@@ -14,10 +14,27 @@ string[] names = {
 // After last element should be ".".
 void PrintGroups(string[] t, int perLine)
 {
+    string allNames = "";
+    int count = 0;
 
-    // Write required code.
+    foreach (var charachterName in t)
+    {
+        allNames += charachterName;
+        count++;
 
+        if (count % perLine == 0)
+        {
+            allNames += "\n";
+        }
+        else
+        {
+            allNames += ", ";
+        }
+    }
+    allNames = allNames.TrimEnd(',', ' ') + ".";
+    Console.Write(allNames);
 }
+    // Write required code.
 
 
 // Print all array elements in *perLine* columns.
@@ -25,11 +42,29 @@ void PrintGroups(string[] t, int perLine)
 // Columns should be separated by "| ".
 // If element is too long it should be trimmed.
 
-void PrintColumns(string[] t, int perLine, int width)
+    void PrintColumns(string[] t, int perLine, int width)
 {
+    string result = "";
 
-    // Write required code.
+    for (int i = 0; i < t.Length; i++)
+    {
+        string element = t[i].Length > width ? t[i].Substring(0, width) : t[i];
+        string remainder = new string(' ', width - element.Length);
 
+        result += element +  remainder + "| ";
+
+        if ((i + 1) % perLine == 0)
+        {
+            result += "\n"; 
+        }
+    }
+
+    if (t.Length % perLine != 0)
+    {
+        result += "\n";
+    }
+
+    Console.WriteLine(result);
 }
 
 
